@@ -29,13 +29,9 @@ namespace ABM.Helper
                     {
                         Connection.Open();
                     }
-                    catch (SqlException)
+                    catch (Exception ex)
                     {
-                        throw new Exception(Resources.ErrorBD);
-                    }
-                    catch (ConfigurationErrorsException)
-                    {
-                        throw new Exception(Resources.ErrorBD);
+                        throw new Exception(Resources.ErrorBD + ex);
                     }
 
                 try

@@ -54,7 +54,7 @@ namespace ABM.Services
             List<Funcionality> funcionalidades = new List<Funcionality>();
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            SqlParameter idRolParameter = new SqlParameter("@role_id", SqlDbType.Int);
+            SqlParameter idRolParameter = new SqlParameter("@rolId", SqlDbType.Int);
             idRolParameter.Value = Id;
 
             parameters.Add(idRolParameter);

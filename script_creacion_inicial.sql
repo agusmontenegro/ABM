@@ -45,7 +45,10 @@ IF OBJECT_ID('dbo.SP_GetFuncionalities', 'P') IS NOT NULL
 	DROP PROCEDURE dbo.SP_GetFuncionalities;
 	
 IF OBJECT_ID('dbo.SP_GetRoles', 'P') IS NOT NULL
-	DROP PROCEDURE dbo.SP_GetRoles;				
+	DROP PROCEDURE dbo.SP_GetRoles;		
+	
+IF OBJECT_ID('dbo.SP_InsertUsuarioRol', 'P') IS NOT NULL
+	DROP PROCEDURE dbo.SP_InsertUsuarioRol;			
 
 -------------------- Creación de tablas ---------------------------
 
@@ -228,6 +231,14 @@ begin
 
 	select role_id, role_description, role_active
 	from dbo.Roles
+
+end
+go
+
+create procedure dbo.SP_InsertUsuarioRol (@userId int, @rolId int) as
+begin
+
+	insert into dbo.RolesByUsers values (@userId, @rolId)
 
 end
 go

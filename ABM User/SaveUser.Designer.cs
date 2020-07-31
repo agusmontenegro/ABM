@@ -52,6 +52,7 @@
             this.txtRepeatPassword.Name = "txtRepeatPassword";
             this.txtRepeatPassword.Size = new System.Drawing.Size(200, 20);
             this.txtRepeatPassword.TabIndex = 2;
+            this.txtRepeatPassword.PasswordChar = '*';
             // 
             // txtPassword
             // 
@@ -59,6 +60,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(200, 20);
             this.txtPassword.TabIndex = 1;
+            this.txtPassword.PasswordChar = '*';
             // 
             // txtMail
             // 

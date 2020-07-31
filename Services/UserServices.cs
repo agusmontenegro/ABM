@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace ABM.Services
 {
@@ -23,10 +24,10 @@ namespace ABM.Services
                 User usuario = GetUsuarioByUserName(userName, db);
 
                 DTO.LogIn login = new DTO.LogIn();
-                if (usuario.Id == 0)
+                if (usuario == null)
                 {
                     login.LoginSuccess = false;
-                    login.ErrorMessage = Resources.UsuarioNoExiste;
+                    MessageBox.Show(Resources.UsuarioNoExiste);
                 }
                 else
                 {
@@ -36,13 +37,13 @@ namespace ABM.Services
                         {
                             login.Usuario = usuario;
                             login.LoginSuccess = false;
-                            login.ErrorMessage = Resources.UsuarioBloqueado + Resources.ContactarAdministrador;
+                            MessageBox.Show(Resources.UsuarioBloqueado + Resources.ContactarAdministrador);
                         }
                         else
                         {
                             login.Usuario = usuario;
                             login.LoginSuccess = false;
-                            login.ErrorMessage = Resources.UsuarioDeshabilitado + "\n" + Resources.ContactarAdministrador;
+                            MessageBox.Show(Resources.UsuarioDeshabilitado + "\n" + Resources.ContactarAdministrador);
                         }
                     }
                     else if (usuario.Password.Equals(password))
@@ -59,7 +60,7 @@ namespace ABM.Services
 
                         login.Usuario = usuario;
                         login.LoginSuccess = false;
-                        login.ErrorMessage = Resources.ContraseñaIncorrecta;
+                        MessageBox.Show(Resources.ContraseñaIncorrecta);
 
                         if (usuario.CountFailedAttempts >= 3)
                             BloqUser(userName, db);
@@ -112,25 +113,29 @@ namespace ABM.Services
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            SqlParameter userNameParameter = new SqlParameter("@user_username", SqlDbType.NVarChar);
+            SqlParameter userNameParameter = new SqlParameter("@username", SqlDbType.NVarChar);
             userNameParameter.Value = userName;
 
             parameters.Add(userNameParameter);
 
             DataTable res = db.GetDataAsTable("dbo.SP_GetUsuarioByUserName", parameters);
-            User usuario = new User();
-            foreach (DataRow row in res.Rows)
+            if (res.Rows.Count != 0)
             {
-                usuario.Id = Convert.ToInt32(row["user_id"]);
-                usuario.UserName = Convert.ToString(row["user_username"]);
-                usuario.Password = Convert.ToString(row["user_password"]);
-                usuario.CountFailedAttempts = Convert.ToByte(row["user_count_failed_attempts"]);
-                usuario.IsActive = Convert.ToBoolean(row["user_active"]);
+                User usuario = new User();
+                foreach (DataRow row in res.Rows)
+                {
+                    usuario.Id = Convert.ToInt32(row["user_id"]);
+                    usuario.UserName = Convert.ToString(row["user_username"]);
+                    usuario.Password = Convert.ToString(row["user_password"]);
+                    usuario.CountFailedAttempts = Convert.ToByte(row["user_count_failed_attempts"]);
+                    usuario.IsActive = Convert.ToBoolean(row["user_active"]);
+                }
+
+                usuario.Roles = GetRolesUsuario(usuario.Id, db);
+
+                return usuario;
             }
-
-            usuario.Roles = GetRolesUsuario(usuario.Id, db);
-
-            return usuario;
+            else return null;
         }
 
         public static List<Rol> GetRolesUsuario(int idUsuario, DataBaseHelper db)
@@ -155,7 +160,7 @@ namespace ABM.Services
             return roles;
         }
 
-        public static void SaveNewUser(User newUser, DataBaseHelper db)
+        public static void RegisterNewUser(User newUser, DataBaseHelper db)
         {
             using (db.Connection)
             {
@@ -166,29 +171,25 @@ namespace ABM.Services
 
                 foreach (Rol rol in newUser.Roles)
                 {
-                    InsertUsuarioRol(newUser.Id, rol.Id, true, db);
+                    InsertUsuarioRol(newUser.Id, rol.Id, db);
                 }
 
                 db.EndConnection();
             }
         }
 
-        private static void InsertUsuarioRol(int idUsuario, int idRol, bool activa, DataBaseHelper db)
+        private static void InsertUsuarioRol(int idUsuario, int idRol, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            SqlParameter idUsuarioParameter = new SqlParameter("@user_id", SqlDbType.Int);
+            SqlParameter idUsuarioParameter = new SqlParameter("@userId", SqlDbType.Int);
             idUsuarioParameter.Value = idUsuario;
 
-            SqlParameter idRolParameter = new SqlParameter("@role_id", SqlDbType.Int);
+            SqlParameter idRolParameter = new SqlParameter("@rolId", SqlDbType.Int);
             idRolParameter.Value = idRol;
-
-            SqlParameter activaParameter = new SqlParameter("@Activa", SqlDbType.Bit);
-            activaParameter.Value = activa;
 
             parameters.Add(idUsuarioParameter);
             parameters.Add(idRolParameter);
-            parameters.Add(activaParameter);
 
             db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_InsertUsuarioRol", parameters);
         }
@@ -197,19 +198,19 @@ namespace ABM.Services
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            SqlParameter userNameParameter = new SqlParameter("@user_username", SqlDbType.NVarChar);
+            SqlParameter userNameParameter = new SqlParameter("@username", SqlDbType.NVarChar);
             userNameParameter.Value = newUser.UserName;
 
-            SqlParameter passEncrParameter = new SqlParameter("@user_password", SqlDbType.NVarChar);
+            SqlParameter passEncrParameter = new SqlParameter("@password", SqlDbType.NVarChar);
             passEncrParameter.Value = EncryptHelper.Sha256Encrypt(newUser.Password);
 
-            SqlParameter cantIntFallidosParameter = new SqlParameter("@user_count_failed_attempts", SqlDbType.Int);
+            SqlParameter cantIntFallidosParameter = new SqlParameter("@countFailedAttemps", SqlDbType.Int);
             cantIntFallidosParameter.Value = newUser.CountFailedAttempts;
 
-            SqlParameter activoParameter = new SqlParameter("@user_active", SqlDbType.Bit);
+            SqlParameter activoParameter = new SqlParameter("@isActive", SqlDbType.Bit);
             activoParameter.Value = true;
 
-            SqlParameter mailParameter = new SqlParameter("@user_mail", SqlDbType.NVarChar);
+            SqlParameter mailParameter = new SqlParameter("@mail", SqlDbType.NVarChar);
             activoParameter.Value = newUser.Email;
 
             parameters.Add(userNameParameter);

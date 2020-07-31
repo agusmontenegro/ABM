@@ -10,9 +10,12 @@ namespace ABM.ABM_User
 {
     public partial class SaveUser : Form
     {
-        public SaveUser()
+        public bool register { get; set; }
+
+        public SaveUser(bool register = false)
         {
             InitializeComponent();
+            this.register = register;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -35,8 +38,11 @@ namespace ABM.ABM_User
                 using (db.Connection)
                 {
                     db.BeginTransaction();
-                    UserServices.SaveNewUser(newUser, db);
-                    MessageBox.Show("Usuario guardado exitosamente.");
+                    if (register) //Chequeo si se está registrando un usuario nuevo
+                    {
+                        UserServices.RegisterNewUser(newUser, db);
+                        MessageBox.Show("Usuario registrado exitosamente.");
+                    }
                 }
             }
             else
@@ -53,7 +59,7 @@ namespace ABM.ABM_User
                 {
                     db.BeginTransaction();
                     User usuario = UserServices.GetUsuarioByUserName(txtUsername.Text.Trim(), db);
-                    v.Validations.Add(new ValidationServices.Validation { condition = usuario != null, msj = "Ya existe un usuario con ese nombre de usuario." });
+                    v.Validations.Add(new ValidationServices.Validation { condition = usuario == null, msj = "Ya existe un usuario con ese nombre de usuario." });
                 }
                 else
                     v.Validations.Add(new ValidationServices.Validation { condition = false, msj = "Debe ingresar el nombre de usuario." });

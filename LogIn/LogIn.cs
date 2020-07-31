@@ -75,7 +75,7 @@ namespace ABM.LogIn
 
         private void llblToRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            var newUserDialog = new ABM_User.SaveUser();
+            var newUserDialog = new ABM_User.SaveUser(true);
             newUserDialog.ShowDialog();
         }
     }

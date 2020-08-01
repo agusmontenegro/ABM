@@ -18,6 +18,7 @@ namespace ABM.Helper
         {
             ConnectionString = connectionString;
             Connection = new SqlConnection(ConnectionString);
+            Connection.ConnectionString = ConnectionString;
         }
 
         public void BeginTransaction()
@@ -25,6 +26,9 @@ namespace ABM.Helper
             if (Connection != null)
             {
                 if (Connection.State != ConnectionState.Open)
+                {
+                    if (string.IsNullOrEmpty(Connection.ConnectionString))
+                        Connection.ConnectionString = ConfigurationManager.AppSettings["connectionString"];
                     try
                     {
                         Connection.Open();
@@ -33,14 +37,17 @@ namespace ABM.Helper
                     {
                         throw new Exception(Resources.ErrorBD + ex);
                     }
-
-                try
-                {
-                    SqlTransaction = Connection.BeginTransaction();
                 }
-                catch (Exception ex)
+                if (SqlTransaction == null)
                 {
-                    throw new Exception(Resources.ErrorBeginTrans, ex);
+                    try
+                    {
+                        SqlTransaction = Connection.BeginTransaction();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(Resources.ErrorBeginTrans, ex);
+                    }
                 }
             }
             else

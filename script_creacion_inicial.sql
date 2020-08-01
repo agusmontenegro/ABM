@@ -45,10 +45,16 @@ IF OBJECT_ID('dbo.SP_GetFuncionalities', 'P') IS NOT NULL
 	DROP PROCEDURE dbo.SP_GetFuncionalities;
 	
 IF OBJECT_ID('dbo.SP_GetRoles', 'P') IS NOT NULL
-	DROP PROCEDURE dbo.SP_GetRoles;		
+	DROP PROCEDURE dbo.SP_GetRoles;			
+	
+IF OBJECT_ID('dbo.SP_GetRolByDescription', 'P') IS NOT NULL
+	DROP PROCEDURE dbo.SP_GetRolByDescription;		
 	
 IF OBJECT_ID('dbo.SP_InsertUsuarioRol', 'P') IS NOT NULL
-	DROP PROCEDURE dbo.SP_InsertUsuarioRol;			
+	DROP PROCEDURE dbo.SP_InsertUsuarioRol;	
+	
+IF OBJECT_ID('dbo.SP_GetRolesByUser', 'P') IS NOT NULL
+	DROP PROCEDURE dbo.SP_GetRolesByUser;			
 
 -------------------- Creación de tablas ---------------------------
 
@@ -190,7 +196,7 @@ begin
 end
 go
 
-create procedure dbo.SP_InsertUser (@username varchar(50), @password varchar(50), @countFailedAttemps int, @isActive bit, @mail varchar(50)) as
+create procedure dbo.SP_InsertUser (@username varchar(50), @password varchar(50), @countFailedAttemps int, @isActive bit, @mail varchar(50), @Id int output) as
 begin
 
 	insert into dbo.Users values (
@@ -201,6 +207,8 @@ begin
 		@mail,
 		@isActive		
 	);
+
+	set @Id = (select top 1 user_id from dbo.Users where user_username = @username)
 
 end
 go
@@ -243,6 +251,27 @@ begin
 end
 go
 
+create procedure dbo.SP_GetRolByDescription (@description varchar(50)) as
+begin
+
+	select role_id, role_description, role_active
+	from dbo.Roles
+	where role_description = @description
+
+end
+go
+
+create procedure dbo.SP_GetRolesByUser (@userId int) as
+begin
+
+	select r.role_id, r.role_description, r.role_active
+	from dbo.RolesByUsers rbu
+	join dbo.Roles r on rbu.role_id = r.role_id
+	where user_id = @userId
+
+end
+go
+
 ---------------------Inserción de datos----------------------------
 
 insert into dbo.Roles values
@@ -265,6 +294,6 @@ insert into dbo.RolesByFuncionalities values
 (4, 1),
 (5, 1),
 (6, 1),
-(1, 2),
-(2, 2),
-(3, 2);
+(1, 3),
+(2, 3),
+(3, 3);

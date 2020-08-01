@@ -82,7 +82,7 @@ namespace ABM.Services
 
             parameters.Add(userNameParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_BloqUser", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "dbo.SP_BloqUser", parameters);
         }
 
         public static object IncrementCountLogin(string userName, DataBaseHelper db)
@@ -94,7 +94,7 @@ namespace ABM.Services
 
             parameters.Add(userNameParameter);
 
-            return db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_IncrementCountLogin", parameters);
+            return db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "dbo.SP_IncrementCountLogin", parameters);
         }
 
         public static void ResetCountLogin(string userName, DataBaseHelper db)
@@ -106,7 +106,7 @@ namespace ABM.Services
 
             parameters.Add(userNameParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_ResetCountLogin", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "dbo.SP_ResetCountLogin", parameters);
         }
 
         public static User GetUsuarioByUserName(string userName, DataBaseHelper db)
@@ -142,17 +142,17 @@ namespace ABM.Services
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
+            SqlParameter idUsuarioParameter = new SqlParameter("@userId", SqlDbType.Int);
             idUsuarioParameter.Value = idUsuario;
 
             parameters.Add(idUsuarioParameter);
 
-            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetRolesUsuario", parameters);
+            DataTable res = db.GetDataAsTable("dbo.SP_GetRolesByUser", parameters);
             List<Rol> roles = new List<Rol>();
             List<Rol> allRoles = new List<Rol>(RolesServices.GetAllData());
             foreach (DataRow row in res.Rows)
             {
-                var idRol = Convert.ToInt32(row["IdRol"]);
+                var idRol = Convert.ToInt32(row["role_id"]);
 
                 roles.Add(allRoles.Find(x => x.Id == idRol));
             }
@@ -191,7 +191,7 @@ namespace ABM.Services
             parameters.Add(idUsuarioParameter);
             parameters.Add(idRolParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_InsertUsuarioRol", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "dbo.SP_InsertUsuarioRol", parameters);
         }
 
         private static void InsertUser(User newUser, DataBaseHelper db)
@@ -208,18 +208,23 @@ namespace ABM.Services
             cantIntFallidosParameter.Value = newUser.CountFailedAttempts;
 
             SqlParameter activoParameter = new SqlParameter("@isActive", SqlDbType.Bit);
-            activoParameter.Value = true;
+            activoParameter.Value = newUser.IsActive;
 
             SqlParameter mailParameter = new SqlParameter("@mail", SqlDbType.NVarChar);
-            activoParameter.Value = newUser.Email;
+            mailParameter.Value = newUser.Email;
+
+            SqlParameter idOuput = new SqlParameter("@Id", SqlDbType.Int);
+            idOuput.Direction = ParameterDirection.Output;
 
             parameters.Add(userNameParameter);
             parameters.Add(passEncrParameter);
             parameters.Add(cantIntFallidosParameter);
             parameters.Add(activoParameter);
             parameters.Add(mailParameter);
+            parameters.Add(idOuput);
 
-            newUser.Id = Convert.ToInt32(db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "dbo.SP_InsertUser", parameters));
+            db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "dbo.SP_InsertUser", parameters);
+            newUser.Id = Convert.ToInt32(parameters[5].Value.ToString());
         }
     }
 }

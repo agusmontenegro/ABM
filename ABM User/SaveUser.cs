@@ -42,6 +42,7 @@ namespace ABM.ABM_User
                     {
                         UserServices.RegisterNewUser(newUser, db);
                         MessageBox.Show("Usuario registrado exitosamente.");
+                        Close();
                     }
                 }
             }

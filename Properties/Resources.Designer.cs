@@ -1285,7 +1285,7 @@ namespace ABM.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Supervisor.
+        ///   Busca una cadena traducida similar a SUPERVISOR.
         /// </summary>
         internal static string Supervisor {
             get {

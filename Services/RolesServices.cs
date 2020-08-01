@@ -30,7 +30,7 @@ namespace ABM.Services
         {
             List<Rol> roles = new List<Rol>();
 
-            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetRoles");
+            DataTable res = db.GetDataAsTable("dbo.SP_GetRoles");
 
             foreach (DataRow row in res.Rows)
             {
@@ -59,11 +59,11 @@ namespace ABM.Services
 
             parameters.Add(idRolParameter);
 
-            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetRolFuncionalities", parameters);
+            DataTable res = db.GetDataAsTable("dbo.SP_GetRolFuncionalities", parameters);
             List<Funcionality> allActiveFuncionalities = new List<Funcionality>(GetFuncionalities(db));
             foreach (DataRow row in res.Rows)
             {
-                var idFuncionalidad = Convert.ToInt32(row["IdFuncionalidad"]);
+                var idFuncionalidad = Convert.ToInt32(row["func_id"]);
 
                 funcionalidades.Add(allActiveFuncionalities.Find(x => x.Id == idFuncionalidad));
             }
@@ -78,12 +78,12 @@ namespace ABM.Services
 
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            SqlParameter descriptionRolParameter = new SqlParameter("@role_description", SqlDbType.Int);
+            SqlParameter descriptionRolParameter = new SqlParameter("@description", SqlDbType.NVarChar);
             descriptionRolParameter.Value = description;
 
             parameters.Add(descriptionRolParameter);
 
-            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetRolByDescription", parameters);
+            DataTable res = db.GetDataAsTable("dbo.SP_GetRolByDescription", parameters);
 
             foreach (DataRow row in res.Rows)
             {
@@ -99,7 +99,7 @@ namespace ABM.Services
         {
             List<Funcionality> funcionalidades = new List<Funcionality>();
 
-            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetFuncionalities");
+            DataTable res = db.GetDataAsTable("dbo.SP_GetFuncionalities");
 
             foreach (DataRow row in res.Rows)
             {

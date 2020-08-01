@@ -526,7 +526,7 @@
     <value>Subasta</value>
   </data>
   <data name="Supervisor" xml:space="preserve">
-    <value>Supervisor</value>
+    <value>SUPERVISOR</value>
   </data>
   <data name="TipoListadoClientesMasProductos" xml:space="preserve">
     <value>Clientes con mayor cantidad de productos comprados</value>

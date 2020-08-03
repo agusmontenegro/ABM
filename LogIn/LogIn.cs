@@ -18,10 +18,11 @@ namespace ABM.LogIn
         private void btnIn_Click(object sender, EventArgs e)
         {
             string msj = string.Empty;
+            EncryptHelper eh = new EncryptHelper();
 
             if (loginValido(ref msj))
             {
-                string password = EncryptHelper.Sha256Encrypt(txtPass.Text);
+                string password = eh.Sha256Encrypt(txtPass.Text.Trim());
                 string userName = txtUser.Text;
 
                 DTO.LogIn login = UserServices.LoginUser(userName, password);
@@ -38,20 +39,15 @@ namespace ABM.LogIn
                         var menuDialog = new Menu.MainMenu { User = login.Usuario };
                         menuDialog.ShowDialog();
                     }
+                    Close();
                 }
                 else
                 {
                     lblErrorMsg.Text = login.ErrorMessage;
+                    txtPass.Text = string.Empty;
 
-                    if (login.Usuario != null && !login.Usuario.IsActive)
-                    {
-                        lblCountAttempts.Text = string.Empty;
-                    }
-                    else
-                    {
-                        if (login.Usuario != null)
-                            lblCountAttempts.Text = Resources.IntentosRestantes + (3 - login.Usuario.CountFailedAttempts);
-                    }
+                    if (login.Usuario != null)
+                        lblCountAttempts.Text = Resources.IntentosRestantes + (3 - login.Usuario.CountFailedAttempts);
                 }
             }
             else
@@ -75,6 +71,11 @@ namespace ABM.LogIn
 
         private void llblToRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            txtUser.Text = string.Empty;
+            txtPass.Text = string.Empty;
+            lblErrorMsg.Text = string.Empty;
+            lblCountAttempts.Text = string.Empty;
+
             var newUserDialog = new ABM_User.SaveUser(true);
             newUserDialog.ShowDialog();
         }

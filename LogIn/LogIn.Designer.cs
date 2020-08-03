@@ -44,7 +44,7 @@
             this.btnIn.Location = new System.Drawing.Point(35, 187);
             this.btnIn.Name = "btnIn";
             this.btnIn.Size = new System.Drawing.Size(126, 39);
-            this.btnIn.TabIndex = 0;
+            this.btnIn.TabIndex = 2;
             this.btnIn.Text = "Ingresar";
             this.btnIn.UseVisualStyleBackColor = true;
             this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
@@ -54,7 +54,7 @@
             this.btnExit.Location = new System.Drawing.Point(212, 187);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(126, 39);
-            this.btnExit.TabIndex = 1;
+            this.btnExit.TabIndex = 3;
             this.btnExit.Text = "Salir";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -101,9 +101,9 @@
             // 
             this.txtPass.Location = new System.Drawing.Point(35, 109);
             this.txtPass.Name = "txtPass";
+            this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(303, 20);
             this.txtPass.TabIndex = 1;
-            this.txtPass.PasswordChar = '*';
             // 
             // txtUser
             // 

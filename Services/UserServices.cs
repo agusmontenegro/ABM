@@ -14,56 +14,58 @@ namespace ABM.Services
     {
         public static DTO.LogIn LoginUser(string userName, string password)
         {
-
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
             using (db.Connection)
             {
                 db.BeginTransaction();
 
-                User usuario = GetUsuarioByUserName(userName, db);
+                User user = GetUsuarioByUserName(userName, db);
 
                 DTO.LogIn login = new DTO.LogIn();
-                if (usuario == null)
+                if (user == null)
                 {
                     login.LoginSuccess = false;
-                    MessageBox.Show(Resources.UsuarioNoExiste);
+                    login.ErrorMessage = Resources.UsuarioNoExiste;
                 }
                 else
                 {
-                    if (!usuario.IsActive)
+                    if (!user.IsActive)
                     {
-                        if (usuario.CountFailedAttempts >= 3)
+                        if (user.CountFailedAttempts >= 3)
                         {
-                            login.Usuario = usuario;
+                            login.Usuario = user;
                             login.LoginSuccess = false;
-                            MessageBox.Show(Resources.UsuarioBloqueado + Resources.ContactarAdministrador);
+                            login.ErrorMessage = Resources.UsuarioBloqueado + Resources.ContactarAdministrador;
                         }
                         else
                         {
-                            login.Usuario = usuario;
+                            login.Usuario = user;
                             login.LoginSuccess = false;
-                            MessageBox.Show(Resources.UsuarioDeshabilitado + "\n" + Resources.ContactarAdministrador);
+                            login.ErrorMessage = Resources.UsuarioDeshabilitado + "\n" + Resources.ContactarAdministrador;
                         }
                     }
-                    else if (usuario.Password.Equals(password))
+                    else if (user.Password.Equals(password))
                     {
                         ResetCountLogin(userName, db);
 
-                        usuario.CountFailedAttempts = 0;
-                        login.Usuario = usuario;
+                        user.CountFailedAttempts = 0;
+                        login.Usuario = user;
                         login.LoginSuccess = true;
                     }
                     else
                     {
-                        usuario.CountFailedAttempts = (int)IncrementCountLogin(userName, db);
+                        user.CountFailedAttempts = (int)IncrementCountLogin(userName, db);
 
-                        login.Usuario = usuario;
+                        login.Usuario = user;
                         login.LoginSuccess = false;
-                        MessageBox.Show(Resources.ContraseñaIncorrecta);
+                        login.ErrorMessage = Resources.ContraseñaIncorrecta;
 
-                        if (usuario.CountFailedAttempts >= 3)
+                        if (user.CountFailedAttempts >= 3)
+                        {
                             BloqUser(userName, db);
+                            login.ErrorMessage = Resources.UsuarioBloqueado + Resources.ContactarAdministrador;
+                        }
                     }
                 }
 
@@ -77,7 +79,7 @@ namespace ABM.Services
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            SqlParameter userNameParameter = new SqlParameter("@UserName", SqlDbType.NVarChar);
+            SqlParameter userNameParameter = new SqlParameter("@username", SqlDbType.NVarChar);
             userNameParameter.Value = userName;
 
             parameters.Add(userNameParameter);
@@ -89,19 +91,25 @@ namespace ABM.Services
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            SqlParameter userNameParameter = new SqlParameter("@UserName", SqlDbType.NVarChar);
+            SqlParameter userNameParameter = new SqlParameter("@username", SqlDbType.NVarChar);
             userNameParameter.Value = userName;
 
-            parameters.Add(userNameParameter);
+            SqlParameter countFailedAttemptsOuput = new SqlParameter("@countFailedAttempts", SqlDbType.Int);
+            countFailedAttemptsOuput.Direction = ParameterDirection.Output;
 
-            return db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "dbo.SP_IncrementCountLogin", parameters);
+            parameters.Add(userNameParameter);
+            parameters.Add(countFailedAttemptsOuput);
+
+            db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "dbo.SP_IncrementCountLogin", parameters);
+
+            return Convert.ToInt32(parameters[1].Value.ToString());
         }
 
         public static void ResetCountLogin(string userName, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            SqlParameter userNameParameter = new SqlParameter("@UserName", SqlDbType.NVarChar);
+            SqlParameter userNameParameter = new SqlParameter("@username", SqlDbType.NVarChar);
             userNameParameter.Value = userName;
 
             parameters.Add(userNameParameter);
@@ -174,7 +182,7 @@ namespace ABM.Services
                     InsertUsuarioRol(newUser.Id, rol.Id, db);
                 }
 
-                db.EndConnection();
+                //db.EndConnection();
             }
         }
 
@@ -202,7 +210,7 @@ namespace ABM.Services
             userNameParameter.Value = newUser.UserName;
 
             SqlParameter passEncrParameter = new SqlParameter("@password", SqlDbType.NVarChar);
-            passEncrParameter.Value = EncryptHelper.Sha256Encrypt(newUser.Password);
+            passEncrParameter.Value = newUser.Password;
 
             SqlParameter cantIntFallidosParameter = new SqlParameter("@countFailedAttemps", SqlDbType.Int);
             cantIntFallidosParameter.Value = newUser.CountFailedAttempts;

@@ -54,7 +54,16 @@ IF OBJECT_ID('dbo.SP_InsertUsuarioRol', 'P') IS NOT NULL
 	DROP PROCEDURE dbo.SP_InsertUsuarioRol;	
 	
 IF OBJECT_ID('dbo.SP_GetRolesByUser', 'P') IS NOT NULL
-	DROP PROCEDURE dbo.SP_GetRolesByUser;			
+	DROP PROCEDURE dbo.SP_GetRolesByUser;		
+	
+IF OBJECT_ID('dbo.SP_ResetCountLogin', 'P') IS NOT NULL
+	DROP PROCEDURE dbo.SP_ResetCountLogin;	
+	
+IF OBJECT_ID('dbo.SP_IncrementCountLogin', 'P') IS NOT NULL
+	DROP PROCEDURE dbo.SP_IncrementCountLogin;	
+	
+IF OBJECT_ID('dbo.SP_BloqUser', 'P') IS NOT NULL
+	DROP PROCEDURE dbo.SP_BloqUser;		
 
 -------------------- Creación de tablas ---------------------------
 
@@ -191,12 +200,12 @@ begin
 	
 	select user_id, user_active, user_count_failed_attempts, user_mail, user_password, user_username
 	from dbo.Users
-	where user_username = @username and user_active = 1
+	where user_username = @username
 
 end
 go
 
-create procedure dbo.SP_InsertUser (@username varchar(50), @password varchar(50), @countFailedAttemps int, @isActive bit, @mail varchar(50), @Id int output) as
+create procedure dbo.SP_InsertUser (@username varchar(50), @password varchar(255), @countFailedAttemps int, @isActive bit, @mail varchar(50), @Id int output) as
 begin
 
 	insert into dbo.Users values (
@@ -268,6 +277,38 @@ begin
 	from dbo.RolesByUsers rbu
 	join dbo.Roles r on rbu.role_id = r.role_id
 	where user_id = @userId
+
+end
+go
+
+create procedure dbo.SP_ResetCountLogin (@username varchar(50)) as
+begin
+
+	update dbo.Users
+	set user_count_failed_attempts = 0
+	where user_username = @username
+
+end
+go
+
+create procedure dbo.SP_IncrementCountLogin (@username varchar(50), @countFailedAttempts int output) as
+begin
+
+	update dbo.Users
+	set user_count_failed_attempts = user_count_failed_attempts + 1
+	where user_username = @username;
+
+	set @countFailedAttempts = (select top 1 user_count_failed_attempts from dbo.Users where user_username = @username);
+
+end
+go
+
+create procedure dbo.SP_BloqUser (@username varchar(50)) as
+begin
+
+	update dbo.Users
+	set user_active = 0
+	where user_username = @username;
 
 end
 go

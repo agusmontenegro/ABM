@@ -22,6 +22,7 @@ namespace ABM.ABM_User
         {
             string msj = string.Empty;
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+            EncryptHelper eh = new EncryptHelper();
 
             if (usuarioValido(ref msj, db))
             {
@@ -30,7 +31,7 @@ namespace ABM.ABM_User
                     CountFailedAttempts = 0,
                     Email = txtMail.Text.Trim(),
                     IsActive = true,
-                    Password = EncryptHelper.Sha256Encrypt(txtPassword.Text.Trim()),
+                    Password = eh.Sha256Encrypt(txtPassword.Text.Trim()),
                     UserName = txtUsername.Text.Trim(),
                     Roles = new List<Rol>()
                 };
@@ -70,7 +71,6 @@ namespace ABM.ABM_User
                 v.Validations.Add(new ValidationServices.Validation { condition = !string.IsNullOrEmpty(txtMail.Text), msj = "Debe ingresar el correo electrónico." });
                 v.Validations.Add(new ValidationServices.Validation { condition = txtPassword.Text.ToUpper() == txtRepeatPassword.Text.ToUpper(), msj = "Las contraseñas no coinciden." });
                 v.Validations.Add(new ValidationServices.Validation { condition = txtMail.Text.Contains("@"), msj = "Formato de correo electrónico inválido." });
-
             }
 
             return v.validate(ref msj);

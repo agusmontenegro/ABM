@@ -132,6 +132,40 @@ namespace ABM.Helper
             }
         }
 
+        public DataSet executeQuery(string query)
+        {
+            SqlCommand sqlCommand = Connection.CreateCommand();
+            SqlDataAdapter sqlAdapter = new SqlDataAdapter(sqlCommand);
+
+            sqlCommand.Connection = Connection;
+            sqlCommand.Transaction = SqlTransaction;
+
+            try
+            {
+                DataSet dataSet = new DataSet();
+
+                sqlCommand.CommandText = query;
+                sqlCommand.CommandType = CommandType.Text;
+
+                sqlAdapter.Fill(dataSet);
+
+                return dataSet;
+            }
+            catch (Exception ex)
+            {
+                RollbackTransaction();
+                throw ex;
+            }
+            finally
+            {
+                if (SqlTransaction == null)
+                    EndConnection();
+
+                sqlCommand.Dispose();
+                sqlAdapter.Dispose();
+            }
+        }
+
         public DataTable GetDataAsTable(string storedProcedure, List<SqlParameter> parameters)
         {
             SqlCommand sqlCommand = Connection.CreateCommand();

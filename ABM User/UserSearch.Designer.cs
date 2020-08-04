@@ -1,4 +1,6 @@
-﻿namespace ABM.ABM_User
+﻿using System.Windows.Forms;
+
+namespace ABM.ABM_User
 {
     partial class UserSearch
     {
@@ -29,6 +31,11 @@
         private void InitializeComponent()
         {
             this.gbxSearchCriteria = new System.Windows.Forms.GroupBox();
+            this.chkIsActive = new System.Windows.Forms.CheckBox();
+            this.lblMail = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtMail = new System.Windows.Forms.TextBox();
+            this.txtUsername = new System.Windows.Forms.TextBox();
             this.grdResult = new System.Windows.Forms.DataGridView();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
@@ -36,11 +43,6 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
             this.lblResult = new System.Windows.Forms.Label();
-            this.txtUsername = new System.Windows.Forms.TextBox();
-            this.txtMail = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblMail = new System.Windows.Forms.Label();
-            this.chkIsActive = new System.Windows.Forms.CheckBox();
             this.gbxSearchCriteria.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdResult)).BeginInit();
             this.SuspendLayout();
@@ -58,6 +60,48 @@
             this.gbxSearchCriteria.TabIndex = 0;
             this.gbxSearchCriteria.TabStop = false;
             this.gbxSearchCriteria.Text = "Criterios de búsqueda";
+            // 
+            // chkIsActive
+            // 
+            this.chkIsActive.AutoSize = true;
+            this.chkIsActive.Location = new System.Drawing.Point(451, 37);
+            this.chkIsActive.Name = "chkIsActive";
+            this.chkIsActive.Size = new System.Drawing.Size(56, 17);
+            this.chkIsActive.TabIndex = 2;
+            this.chkIsActive.Text = "Activo";
+            this.chkIsActive.UseVisualStyleBackColor = true;
+            // 
+            // lblMail
+            // 
+            this.lblMail.AutoSize = true;
+            this.lblMail.Location = new System.Drawing.Point(217, 19);
+            this.lblMail.Name = "lblMail";
+            this.lblMail.Size = new System.Drawing.Size(93, 13);
+            this.lblMail.TabIndex = 9;
+            this.lblMail.Text = "Correo electrónico";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Usuario";
+            // 
+            // txtMail
+            // 
+            this.txtMail.Location = new System.Drawing.Point(220, 35);
+            this.txtMail.Name = "txtMail";
+            this.txtMail.Size = new System.Drawing.Size(189, 20);
+            this.txtMail.TabIndex = 1;
+            // 
+            // txtUsername
+            // 
+            this.txtUsername.Location = new System.Drawing.Point(15, 35);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(189, 20);
+            this.txtUsername.TabIndex = 0;
             // 
             // grdResult
             // 
@@ -126,48 +170,6 @@
             this.lblResult.Size = new System.Drawing.Size(58, 13);
             this.lblResult.TabIndex = 7;
             this.lblResult.Text = "Resultado:";
-            // 
-            // txtUsername
-            // 
-            this.txtUsername.Location = new System.Drawing.Point(15, 35);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(189, 20);
-            this.txtUsername.TabIndex = 0;
-            // 
-            // txtMail
-            // 
-            this.txtMail.Location = new System.Drawing.Point(220, 35);
-            this.txtMail.Name = "txtMail";
-            this.txtMail.Size = new System.Drawing.Size(189, 20);
-            this.txtMail.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Usuario";
-            // 
-            // lblMail
-            // 
-            this.lblMail.AutoSize = true;
-            this.lblMail.Location = new System.Drawing.Point(217, 19);
-            this.lblMail.Name = "lblMail";
-            this.lblMail.Size = new System.Drawing.Size(93, 13);
-            this.lblMail.TabIndex = 9;
-            this.lblMail.Text = "Correo electrónico";
-            // 
-            // chkIsActive
-            // 
-            this.chkIsActive.AutoSize = true;
-            this.chkIsActive.Location = new System.Drawing.Point(451, 37);
-            this.chkIsActive.Name = "chkIsActive";
-            this.chkIsActive.Size = new System.Drawing.Size(56, 17);
-            this.chkIsActive.TabIndex = 2;
-            this.chkIsActive.Text = "Activo";
-            this.chkIsActive.UseVisualStyleBackColor = true;
             // 
             // UserSearch
             // 

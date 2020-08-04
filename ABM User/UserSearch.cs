@@ -3,10 +3,8 @@ using ABM.Helper;
 using ABM.Properties;
 using ABM.Services;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -41,28 +39,29 @@ namespace ABM.ABM_User
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            List<SqlParameter> parameters = new List<SqlParameter>();
+            string query = "select user_id, user_username, user_count_failed_attempts, user_active from dbo.Users ";
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
-            if (string.IsNullOrEmpty(txtUsername.Text))
+            if (!string.IsNullOrEmpty(txtUsername.Text))
+                query += "where user_username like '" + txtUsername.Text + "' ";
+
+            if (!string.IsNullOrEmpty(txtMail.Text))
             {
-                SqlParameter usernameParameter = new SqlParameter("@username", SqlDbType.NVarChar);
-                usernameParameter.Value = txtUsername.Text.Trim();
-                parameters.Add(usernameParameter);
+                if (!query.Contains("where"))
+                    query += "where user_mail like '" + txtMail.Text + "' ";
+                else
+                    query += "and user_mail like '" + txtMail.Text + "' ";
             }
 
-            if (string.IsNullOrEmpty(txtMail.Text))
-            {
-                SqlParameter mailParameter = new SqlParameter("@mail", SqlDbType.NVarChar);
-                mailParameter.Value = txtMail.Text.Trim();
-                parameters.Add(mailParameter);
-            }
+            if (!query.Contains("where"))
+                query += "where user_active = " + (chkIsActive.Checked ? "1" : "0");
+            else
+                query += "and user_active = " + (chkIsActive.Checked ? "1" : "0");
 
-            SqlParameter activeParameter = new SqlParameter("@isActive", SqlDbType.Bit);
-            activeParameter.Value = chkIsActive.Checked;
-            parameters.Add(activeParameter);
+            DataSet users = UserServices.Search(query, db);
 
-            List<User> users = UserServices.Search(parameters, db);
+            grdResult.ReadOnly = true;
+            grdResult.DataSource = users.Tables[0];
         }
     }
 }

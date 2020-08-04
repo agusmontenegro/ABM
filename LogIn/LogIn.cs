@@ -31,12 +31,13 @@ namespace ABM.LogIn
                 {
                     if (login.Usuario.Roles.Count > 1)
                     {
-                        var seleccionRol = new SelectRol { User = login.Usuario };
+                        var seleccionRol = new SelectRol(login.Usuario);
                         seleccionRol.ShowDialog();
                     }
                     else
                     {
-                        var menuDialog = new Menu.MainMenu { User = login.Usuario };
+                        login.Usuario.RolActivo = login.Usuario.Roles[0];
+                        var menuDialog = new Menu.MainMenu(login.Usuario);
                         menuDialog.ShowDialog();
                     }
                     Close();

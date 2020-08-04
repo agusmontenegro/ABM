@@ -86,12 +86,12 @@ namespace ABM.Helper
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception(Resources.ErrorEndTrans, ex);
+                        throw ex;
                     }
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception(Resources.ErrorTrans, ex);
+                    throw ex;
                 }
             }
             else
@@ -120,7 +120,7 @@ namespace ABM.Helper
             catch (Exception ex)
             {
                 RollbackTransaction();
-                throw new Exception(Resources.ErrorSP, ex);
+                throw ex;
             }
             finally
             {
@@ -159,7 +159,7 @@ namespace ABM.Helper
             catch (Exception ex)
             {
                 RollbackTransaction();
-                throw new Exception(Resources.ErrorSP, ex);
+                throw ex;
             }
             finally
             {
@@ -205,7 +205,7 @@ namespace ABM.Helper
             catch (Exception ex)
             {
                 RollbackTransaction();
-                throw new Exception(Resources.ErrorSP, ex);
+                throw ex;
             }
             finally
             {

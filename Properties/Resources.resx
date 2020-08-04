@@ -117,50 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Adjudicada" xml:space="preserve">
-    <value>Adjudicada</value>
-  </data>
   <data name="Admin" xml:space="preserve">
     <value>admin</value>
   </data>
   <data name="Administrativo" xml:space="preserve">
     <value>Administrativo</value>
-  </data>
-  <data name="Advertencia" xml:space="preserve">
-    <value>Advertencia</value>
-  </data>
-  <data name="Apellido" xml:space="preserve">
-    <value>Apellido</value>
-  </data>
-  <data name="Articulo" xml:space="preserve">
-    <value>Artículo</value>
-  </data>
-  <data name="Borrador" xml:space="preserve">
-    <value>Borrador</value>
-  </data>
-  <data name="Calificacion" xml:space="preserve">
-    <value>Calificación</value>
-  </data>
-  <data name="Cantidad" xml:space="preserve">
-    <value>Cantidad</value>
-  </data>
-  <data name="Ciudad" xml:space="preserve">
-    <value>Ciudad</value>
-  </data>
-  <data name="Cliente" xml:space="preserve">
-    <value>Cliente</value>
-  </data>
-  <data name="CodigoPublicacion" xml:space="preserve">
-    <value>Codigo Publicación</value>
-  </data>
-  <data name="Compra" xml:space="preserve">
-    <value>Compra</value>
-  </data>
-  <data name="CompraInmediata" xml:space="preserve">
-    <value>Compra Inmediata</value>
-  </data>
-  <data name="Comprar" xml:space="preserve">
-    <value>Comprar</value>
   </data>
   <data name="ContactarAdministrador" xml:space="preserve">
     <value>Contacte al administrador.</value>
@@ -168,418 +129,49 @@
   <data name="ContraseñaIncorrecta" xml:space="preserve">
     <value>Contraseña incorrecta</value>
   </data>
-  <data name="CUIL" xml:space="preserve">
-    <value>CUIL</value>
-  </data>
-  <data name="CUIT" xml:space="preserve">
-    <value>CUIT</value>
-  </data>
-  <data name="Descripcion" xml:space="preserve">
-    <value>Descripción</value>
-  </data>
-  <data name="DescripcionCorta" xml:space="preserve">
-    <value>Descripción Corta</value>
-  </data>
-  <data name="DescripcionLarga" xml:space="preserve">
-    <value>Descripción Larga</value>
-  </data>
-  <data name="DetallesDeCompra" xml:space="preserve">
-    <value>Detalles de Compra</value>
-  </data>
-  <data name="DetallesSubasta" xml:space="preserve">
-    <value>Detalles de Subasta</value>
-  </data>
-  <data name="DNI" xml:space="preserve">
-    <value>DNI</value>
-  </data>
-  <data name="EdicionRol" xml:space="preserve">
-    <value>Edición de Rol</value>
-  </data>
-  <data name="EdicionUsuario" xml:space="preserve">
-    <value>Edición de Usuario</value>
-  </data>
-  <data name="EdicionVisibilidad" xml:space="preserve">
-    <value>Edición de Visibilidad</value>
-  </data>
-  <data name="Electronicos" xml:space="preserve">
-    <value>Componentes Electrónicos</value>
-  </data>
-  <data name="Email" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="Empresa" xml:space="preserve">
-    <value>Empresa</value>
-  </data>
-  <data name="Error" xml:space="preserve">
-    <value>Error: </value>
-  </data>
-  <data name="ErrorAgregarFuncionalidad" xml:space="preserve">
-    <value>La funcionalidad seleccionada ya fue agregada.</value>
-  </data>
-  <data name="ErrorAgregarRol" xml:space="preserve">
-    <value>El rol seleccionado ya fue agregado.</value>
-  </data>
-  <data name="ErrorAnio" xml:space="preserve">
-    <value>El campo año no puede estar vacio.</value>
-  </data>
-  <data name="ErrorApellido" xml:space="preserve">
-    <value>El campo "Apellido" no puede estar vacío.</value>
-  </data>
   <data name="ErrorBD" xml:space="preserve">
     <value>Se produjo un error al intentar establecer conexión con la base de datos.</value>
   </data>
   <data name="ErrorBeginTrans" xml:space="preserve">
     <value>Se produjo un error al intentar iniciar la transacción.</value>
   </data>
-  <data name="ErrorBorrado" xml:space="preserve">
-    <value>Error al borrar</value>
-  </data>
-  <data name="ErrorCalificacionesPendientes" xml:space="preserve">
-    <value>Calificaciones pendientes</value>
-  </data>
-  <data name="ErrorCalle" xml:space="preserve">
-    <value>El campo "Calle" no puede estar vacío.</value>
-  </data>
-  <data name="ErrorClienteExistente" xml:space="preserve">
-    <value>Ya existe un cliente con el mismo tipo y número de documento.</value>
-  </data>
-  <data name="ErrorCompra" xml:space="preserve">
-    <value>Error al comprar</value>
-  </data>
-  <data name="ErrorCp" xml:space="preserve">
-    <value>El campo "CP" no puede estar vacío.</value>
-  </data>
-  <data name="ErrorCuit" xml:space="preserve">
-    <value>El campo "CUIT" no puede estar vacío.</value>
-  </data>
-  <data name="ErrorDeDatos" xml:space="preserve">
-    <value>Error de datos</value>
-  </data>
-  <data name="ErrorDescripcionCortaVacia" xml:space="preserve">
-    <value>El campo "Descripción corta" no puede estar vacío.</value>
-  </data>
-  <data name="ErrorDescripcionLargaVacia" xml:space="preserve">
-    <value>El campo "Descripción larga" no puede estar vacío.</value>
-  </data>
-  <data name="ErrorDescripcionVacia" xml:space="preserve">
-    <value>El campo "Descripción" no puede estar vacío.</value>
-  </data>
-  <data name="ErrorDNI" xml:space="preserve">
-    <value>El campo "N° Doc." no puede estar vacío.</value>
-  </data>
-  <data name="ErrorEmail" xml:space="preserve">
-    <value>El campo "Email" no puede estar vacío.</value>
-  </data>
-  <data name="ErrorEmpresaExistenteCUIT" xml:space="preserve">
-    <value>Ya existe una empresa con el mismo número de CUIT.</value>
-  </data>
-  <data name="ErrorEmpresaExistenteRazonSocial" xml:space="preserve">
-    <value>Ya existe una empresa con la misma razón social.</value>
-  </data>
-  <data name="ErrorEndTrans" xml:space="preserve">
-    <value>Se produjo un error al intentar finalizar la transacción.</value>
-  </data>
-  <data name="ErrorEnLaOperacion" xml:space="preserve">
-    <value>Error en la operación</value>
-  </data>
-  <data name="ErrorEstadoVacio" xml:space="preserve">
-    <value>El campo "Estado" no puede estar vacío.</value>
-  </data>
-  <data name="ErrorFechaInicio" xml:space="preserve">
-    <value>La Fecha de Inicio no puede ser menor a la del sistema.</value>
-  </data>
-  <data name="ErrorFechaNacimiento" xml:space="preserve">
-    <value>La fecha de nacimiento debe ser anterior a la fecha del día de hoy.</value>
-  </data>
-  <data name="ErrorFechaSistema" xml:space="preserve">
-    <value>La fecha ingresada en el archivo de configuración no es válida.</value>
-  </data>
-  <data name="ErrorFechaVencimiento" xml:space="preserve">
-    <value>La Fecha de Vencimiento no puede ser menor a la del sistema.</value>
-  </data>
-  <data name="ErrorGuardado" xml:space="preserve">
-    <value>Error al guardar</value>
-  </data>
-  <data name="ErrorLoginSeguridad" xml:space="preserve">
-    <value>Todo rol debe tener la funcionalidad "Login y Seguridad".</value>
-  </data>
   <data name="ErrorNoConnection" xml:space="preserve">
     <value>No se ha instanciado ninguna conexión.</value>
-  </data>
-  <data name="ErrorNoExisteCodPublicacion" xml:space="preserve">
-    <value>El código ingresado no corresponde a ninguna publicación existente en el sistema o corresponde a una generada por otro usuario.</value>
-  </data>
-  <data name="ErrorNombre" xml:space="preserve">
-    <value>El campo "Nombre" no puede estar vacío.</value>
   </data>
   <data name="ErrorNoTrans" xml:space="preserve">
     <value>No se ha instanciado ninguna transacción.</value>
   </data>
-  <data name="ErrorNumeroCalle" xml:space="preserve">
-    <value>El campo "N°" no puede estar vacio.</value>
-  </data>
-  <data name="ErrorOferta" xml:space="preserve">
-    <value>El valor de la oferta no puede ser menor al precio actual de la subasta.</value>
-  </data>
-  <data name="ErrorPassword" xml:space="preserve">
-    <value>El campo "Password" no puede estar vacío.</value>
-  </data>
-  <data name="ErrorPublicacionEmpresa" xml:space="preserve">
-    <value>Las empresas sólo pueden publicar productos del rubro "Componentes Electrónicos"</value>
-  </data>
-  <data name="ErrorPublicacionPausada" xml:space="preserve">
-    <value>La publicación se encuentra pausada</value>
-  </data>
-  <data name="ErrorRazonSocial" xml:space="preserve">
-    <value>El campo "Razón Social" no puede estar vacío.</value>
-  </data>
-  <data name="ErrorRolBorrado1" xml:space="preserve">
-    <value>El rol que se desea borrar es el único que los siguientes usuarios tienen asignado:</value>
-  </data>
-  <data name="ErrorRolBorrado2" xml:space="preserve">
-    <value>Existen varios usuarios cuyo único rol asignado es el que se desea borrar.</value>
-  </data>
-  <data name="ErrorRolBorrado3" xml:space="preserve">
-    <value>El rol ya ha sido dado de baja.</value>
-  </data>
-  <data name="ErrorRolExistente" xml:space="preserve">
-    <value>Ya existe un rol con la descripción ingresada.</value>
-  </data>
   <data name="ErrorRollbackTrans" xml:space="preserve">
     <value>Se produjo un error al intentar deshacer la transacción.</value>
-  </data>
-  <data name="ErrorRolSinFuncionalidad" xml:space="preserve">
-    <value>El rol debe tener al menos una funcionalidad.</value>
-  </data>
-  <data name="ErrorSP" xml:space="preserve">
-    <value>Se produjo un error al intentar ejecutar el stored procedure.</value>
-  </data>
-  <data name="ErrorStock" xml:space="preserve">
-    <value>La cantidad a comprar no puede superar el stock.</value>
-  </data>
-  <data name="ErrorTipoDocumento1" xml:space="preserve">
-    <value>El campo "Tipo Doc." no puede estar vacío.</value>
-  </data>
-  <data name="ErrorTipoDocumento2" xml:space="preserve">
-    <value>El tipo de documento debe ser DNI, LE o CUIL.</value>
   </data>
   <data name="ErrorTrans" xml:space="preserve">
     <value>Se produjo un error al intentar ejecutar la transacción.</value>
   </data>
-  <data name="ErrorUserName" xml:space="preserve">
-    <value>El campo "Username" no puede estar vacío.</value>
-  </data>
-  <data name="ErrorUsuarioBorrado" xml:space="preserve">
-    <value>El usuario ya ha sido dado de baja.</value>
-  </data>
-  <data name="ErrorUsuarioCompraSuPublicacion" xml:space="preserve">
-    <value>El autor de una publicación no puede Comprar/Ofertar sobre la misma.</value>
-  </data>
-  <data name="ErrorUsuarioRol" xml:space="preserve">
-    <value>Todo usuario debe tener un rol "Usuario" o "Empresa".</value>
-  </data>
-  <data name="ErrorVisibilidadBorrada" xml:space="preserve">
-    <value>La visibilidad que desea borrar está siendo usada por una publicación.</value>
-  </data>
-  <data name="ErrorVisibilidadExistente" xml:space="preserve">
-    <value>Ya existe una visibilidad con la descripción ingresada.</value>
-  </data>
-  <data name="Estado" xml:space="preserve">
-    <value>Estado</value>
-  </data>
-  <data name="Fecha" xml:space="preserve">
-    <value>Fecha</value>
-  </data>
-  <data name="FechaInicio" xml:space="preserve">
-    <value>Fecha Inicio</value>
-  </data>
-  <data name="FechaVencimiento" xml:space="preserve">
-    <value>Fecha Vencimiento</value>
-  </data>
-  <data name="Funcionalidad" xml:space="preserve">
-    <value>Funcionalidad</value>
-  </data>
-  <data name="IdCompra" xml:space="preserve">
-    <value>ID Compra</value>
-  </data>
-  <data name="IdCompraIdOferta" xml:space="preserve">
-    <value>ID Compra/ID Oferta</value>
-  </data>
-  <data name="IdFactura" xml:space="preserve">
-    <value>Código Factura</value>
-  </data>
-  <data name="IdPublicacion" xml:space="preserve">
-    <value>Código Publicacion</value>
-  </data>
-  <data name="IdUsuario" xml:space="preserve">
-    <value>ID Usuario</value>
-  </data>
   <data name="IntentosRestantes" xml:space="preserve">
     <value>Intentos restantes: </value>
-  </data>
-  <data name="LE" xml:space="preserve">
-    <value>LE</value>
-  </data>
-  <data name="Localidad" xml:space="preserve">
-    <value>Localidad</value>
-  </data>
-  <data name="LoginSeguridad" xml:space="preserve">
-    <value>Login y Seguridad</value>
-  </data>
-  <data name="MensajeDespedida" xml:space="preserve">
-    <value>Gracias por su visita, ¡lo esperamos de vuelta!</value>
-  </data>
-  <data name="MercadoEnvio" xml:space="preserve">
-    <value>MercadoEnvío</value>
-  </data>
-  <data name="Monto" xml:space="preserve">
-    <value>Monto</value>
-  </data>
-  <data name="MontoFacturado" xml:space="preserve">
-    <value>Monto Facturado</value>
-  </data>
-  <data name="MontoOferta" xml:space="preserve">
-    <value>Monto/Oferta</value>
-  </data>
-  <data name="NoDoc" xml:space="preserve">
-    <value>N° Doc.</value>
-  </data>
-  <data name="Nombre" xml:space="preserve">
-    <value>Nombre</value>
-  </data>
-  <data name="NombreUsuario" xml:space="preserve">
-    <value>Nombre del usuario</value>
-  </data>
-  <data name="NroCompra" xml:space="preserve">
-    <value>Se ha generado la compra N° </value>
-  </data>
-  <data name="NroCompraPrecioReserva" xml:space="preserve">
-    <value>Ha reservado la compra del producto. Se ha generado la compra N° </value>
-  </data>
-  <data name="NroOferta" xml:space="preserve">
-    <value>Se ha generado la oferta N°</value>
-  </data>
-  <data name="NroPublicacion" xml:space="preserve">
-    <value>Se ha generado la publicación N° </value>
-  </data>
-  <data name="Observacion" xml:space="preserve">
-    <value>Observación</value>
-  </data>
-  <data name="Ofertar" xml:space="preserve">
-    <value>Ofertar</value>
-  </data>
-  <data name="OperacionExitosa" xml:space="preserve">
-    <value>Operación Exitosa</value>
-  </data>
-  <data name="Pausada" xml:space="preserve">
-    <value>Pausada</value>
-  </data>
-  <data name="Porcentaje" xml:space="preserve">
-    <value>Porcentaje</value>
-  </data>
-  <data name="PorcentajeEnvio" xml:space="preserve">
-    <value>Porcentaje Envío</value>
-  </data>
-  <data name="Precio" xml:space="preserve">
-    <value>Precio</value>
-  </data>
-  <data name="PrecioInvalido" xml:space="preserve">
-    <value>El precio del producto debe ser mayor a 0.</value>
-  </data>
-  <data name="PrecioReservaInvalido" xml:space="preserve">
-    <value>El precio de reserva de la subasta debe ser mayor a 0.</value>
-  </data>
-  <data name="PublicacionActualizada" xml:space="preserve">
-    <value>La publicación ha sido actualizada exitosamente.</value>
-  </data>
-  <data name="RazonSocial" xml:space="preserve">
-    <value>R.Social</value>
-  </data>
-  <data name="ResultadosRubro" xml:space="preserve">
-    <value>Resultados para el Rubro: </value>
-  </data>
-  <data name="Rol" xml:space="preserve">
-    <value>Rol</value>
-  </data>
-  <data name="RolActualizado" xml:space="preserve">
-    <value>El rol ha sido actualizado exitosamente.</value>
-  </data>
-  <data name="RolBorrado" xml:space="preserve">
-    <value>El rol ha sido borrado exitosamente.</value>
-  </data>
-  <data name="RolCreado" xml:space="preserve">
-    <value>El rol ha sido creado exitosamente.</value>
-  </data>
-  <data name="Rubro" xml:space="preserve">
-    <value>Rubro</value>
-  </data>
-  <data name="RubroCreado" xml:space="preserve">
-    <value>El rubro ha sido creado exitosamente.</value>
-  </data>
-  <data name="Stock" xml:space="preserve">
-    <value>Stock</value>
-  </data>
-  <data name="StockInvalido" xml:space="preserve">
-    <value>El stock debe ser mayor a 0.</value>
-  </data>
-  <data name="Subasta" xml:space="preserve">
-    <value>Subasta</value>
   </data>
   <data name="Supervisor" xml:space="preserve">
     <value>SUPERVISOR</value>
   </data>
-  <data name="TipoListadoClientesMasProductos" xml:space="preserve">
-    <value>Clientes con mayor cantidad de productos comprados</value>
+  <data name="UsuarioAlta" xml:space="preserve">
+    <value>USUARIO - ALTA</value>
   </data>
-  <data name="TipoListadoVendedoresMasFacturas" xml:space="preserve">
-    <value>Vendedores con mayor cantidad de facturas</value>
-  </data>
-  <data name="TipoListadoVendedoresMasMonto" xml:space="preserve">
-    <value>Vendedores con mayor monto facturado</value>
-  </data>
-  <data name="TipoListadoVendedoresProductosNoVendidos" xml:space="preserve">
-    <value>Vendedores con mayor cantidad de productos no vendidos</value>
-  </data>
-  <data name="TipoPublicacion" xml:space="preserve">
-    <value>Tipo de Publicación</value>
-  </data>
-  <data name="TituloCompra" xml:space="preserve">
-    <value>Compra</value>
-  </data>
-  <data name="Total" xml:space="preserve">
-    <value>Total</value>
-  </data>
-  <data name="UsuarioActualizado" xml:space="preserve">
-    <value>El usuario ha sido actualizado exitosamente.</value>
+  <data name="UsuarioBaja" xml:space="preserve">
+    <value>USUARIO - BAJA</value>
   </data>
   <data name="UsuarioBloqueado" xml:space="preserve">
     <value>Usuario bloqueado. </value>
   </data>
-  <data name="UsuarioBorrado" xml:space="preserve">
-    <value>El usuario ha sido borrado exitosamente.</value>
-  </data>
-  <data name="UsuarioCreado" xml:space="preserve">
-    <value>El usuario ha sido creado exitosamente.</value>
+  <data name="UsuarioBusqueda" xml:space="preserve">
+    <value>USUARIO - BÚSQUEDA</value>
   </data>
   <data name="UsuarioDeshabilitado" xml:space="preserve">
     <value>Usuario deshabilitado. </value>
   </data>
+  <data name="UsuarioModificacion" xml:space="preserve">
+    <value>USUARIO - MODIFICACIÓN</value>
+  </data>
   <data name="UsuarioNoExiste" xml:space="preserve">
     <value>El usuario ingresado no existe.</value>
-  </data>
-  <data name="Vendedor" xml:space="preserve">
-    <value>Vendedor</value>
-  </data>
-  <data name="Visibilidad" xml:space="preserve">
-    <value>Visibilidad</value>
-  </data>
-  <data name="VisibilidadActualizada" xml:space="preserve">
-    <value>La visibilidad ha sido actualizada exitosamente.</value>
-  </data>
-  <data name="VisibilidadBorrada" xml:space="preserve">
-    <value>La visibilidad ha sido borrada exitosamente.</value>
-  </data>
-  <data name="VisibilidadCreada" xml:space="preserve">
-    <value>La visibilidad ha sido creada exitosamente.</value>
   </data>
 </root>

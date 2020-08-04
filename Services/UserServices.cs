@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Windows.Forms;
 
 namespace ABM.Services
 {
@@ -233,6 +232,26 @@ namespace ABM.Services
 
             db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "dbo.SP_InsertUser", parameters);
             newUser.Id = Convert.ToInt32(parameters[5].Value.ToString());
+        }
+
+        public static List<User> Search(List<SqlParameter> parameters, DataBaseHelper db)
+        {
+            DataTable res = db.GetDataAsTable("dbo.SP_UserSearch", parameters);
+            List<User> users = new List<User>();
+
+            if (res.Rows.Count != 0)
+            {
+                User usuario = new User();
+                foreach (DataRow row in res.Rows)
+                {
+                    usuario.Id = Convert.ToInt32(row["user_id"]);
+                    usuario.UserName = Convert.ToString(row["user_username"]);
+                    usuario.CountFailedAttempts = Convert.ToByte(row["user_count_failed_attempts"]);
+                }
+                users.Add(usuario);
+            }
+
+            return users;
         }
     }
 }

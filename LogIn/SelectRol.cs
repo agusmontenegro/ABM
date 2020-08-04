@@ -9,9 +9,10 @@ namespace ABM.LogIn
     {
         public User User { get; set; }
 
-        public SelectRol()
+        public SelectRol(User user)
         {
             InitializeComponent();
+            User = user;
         }
 
         private void SelectRol_Load(object sender, EventArgs e)

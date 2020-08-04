@@ -324,9 +324,11 @@ insert into dbo.Funcionalities values
 (1, 'USUARIO - ALTA'),
 (2, 'USUARIO - BAJA'),
 (3, 'USUARIO - MODIFICACIÓN'),
-(4, 'ROL - ALTA'),
-(5, 'ROL - BAJA'),
-(6, 'ROL - MODIFICACIÓN');
+(4, 'USUARIO - BÚSQUEDA'),
+(5, 'ROL - ALTA'),
+(6, 'ROL - BAJA'),
+(7, 'ROL - MODIFICACIÓN'),
+(8, 'ROL - BÚSQUEDA');
 
 insert into dbo.RolesByFuncionalities values
 (1, 1),
@@ -335,6 +337,11 @@ insert into dbo.RolesByFuncionalities values
 (4, 1),
 (5, 1),
 (6, 1),
+(7, 1),
+(8, 1),
+(4, 2),
+(8, 2),
 (1, 3),
 (2, 3),
-(3, 3);
+(3, 3),
+(4, 3);
